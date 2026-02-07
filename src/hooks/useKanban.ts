@@ -62,7 +62,9 @@ export default function useKanban(initialColumns: KanbanColumn[]) {
         if (!from || !to) return prev;
         const idx = from.cards.findIndex((c) => c.id === cardId);
         if (idx === -1) return prev;
-        const [card] = from.cards.splice(idx, 1);
+        const removed = from.cards.splice(idx, 1);
+        const card = removed[0] ?? null;
+        if (!card) return prev;
 
         let adjustedIndex = targetIndex;
         if (fromColumnId === toColumnId && idx < targetIndex) {

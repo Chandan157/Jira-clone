@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { KanbanColumn } from "../types";
 import KanbanCardComponent from "./KanbanCard";
 
@@ -117,7 +117,6 @@ export default function KanbanColumnComponent({
             >
               <KanbanCardComponent
                 card={card}
-                columnId={column.id}
                 onDelete={() => onDeleteCard(column.id, card.id)}
                 onEdit={(newTitle: string) =>
                   onEditCard(column.id, card.id, newTitle)

@@ -3,7 +3,6 @@ import { KanbanCard } from "../types";
 
 interface KanbanCardProps {
   card: KanbanCard;
-  columnId: string;
   onDelete: () => void;
   onEdit: (newTitle: string) => void;
   onDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
@@ -11,7 +10,6 @@ interface KanbanCardProps {
 
 export default function KanbanCardComponent({
   card,
-  columnId,
   onDelete,
   onEdit,
   onDragStart,
