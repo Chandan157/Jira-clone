@@ -130,12 +130,17 @@ export default function useTree(initialData: TreeNode[]) {
 
       const findAndRemove = (nodeList: TreeNode[]): TreeNode[] => {
         for (let i = 0; i < nodeList.length; i++) {
-          if (nodeList[i].id === nodeId) {
-            nodeToMove = nodeList.splice(i, 1)[0];
+          const current = nodeList[i];
+          if (!current) continue;
+
+          if (current.id === nodeId) {
+            const removed = nodeList.splice(i, 1);
+            nodeToMove = removed.length > 0 ? (removed[0] as TreeNode) : null;
             break;
           }
-          if (nodeList[i].children) {
-            nodeList[i].children = findAndRemove(nodeList[i].children!);
+
+          if (current.children && current.children.length > 0) {
+            current.children = findAndRemove(current.children);
           }
         }
         return nodeList;
@@ -143,14 +148,16 @@ export default function useTree(initialData: TreeNode[]) {
 
       const addToParent = (nodeList: TreeNode[]): TreeNode[] => {
         if (!targetParentId) {
-          return [...nodeList, nodeToMove!];
+          if (!nodeToMove) return nodeList;
+          return [...nodeList, nodeToMove];
         }
 
         return nodeList.map((node) => {
           if (node.id === targetParentId) {
+            if (!nodeToMove) return node;
             return {
               ...node,
-              children: [...(node.children || []), nodeToMove!],
+              children: [...(node.children || []), nodeToMove],
             };
           }
           if (node.children) {

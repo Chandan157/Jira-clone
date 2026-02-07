@@ -1,0 +1,1 @@
+{"version":3,"file":"useKanban.d.ts","sourceRoot":"","sources":["useKanban.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,YAAY,EAAE,MAAM,UAAU,CAAC;AAExC,MAAM,CAAC,OAAO,UAAU,SAAS,CAAC,cAAc,EAAE,YAAY,EAAE;;iCAGvB,MAAM,SAAS,MAAM;oCAclB,MAAM,UAAU,MAAM;kCAYnD,MAAM,UAAU,MAAM,SAAS,MAAM;sCAoBhC,MAAM,cACR,MAAM,UACV,MAAM,eACD,MAAM;;EAiCxB"}

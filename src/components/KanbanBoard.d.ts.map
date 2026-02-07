@@ -1,0 +1,1 @@
+{"version":3,"file":"KanbanBoard.d.ts","sourceRoot":"","sources":["KanbanBoard.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAE,MAAM,UAAU,CAAC;AAExC,OAAO,2BAA2B,CAAC;AAGnC,UAAU,gBAAgB;IACxB,cAAc,EAAE,YAAY,EAAE,CAAC;CAChC;AAED,MAAM,CAAC,OAAO,UAAU,WAAW,CAAC,EAAE,cAAc,EAAE,EAAE,gBAAgB,2CAuBvE"}

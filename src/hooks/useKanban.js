@@ -1,0 +1,65 @@
+import { useCallback, useState } from "react";
+export default function useKanban(initialColumns) {
+    const [columns, setColumns] = useState(initialColumns);
+    const addCard = useCallback((columnId, title) => {
+        setColumns((prev) => prev.map((col) => {
+            if (col.id === columnId) {
+                return {
+                    ...col,
+                    cards: [...col.cards, { id: `card-${Date.now()}`, title }],
+                };
+            }
+            return col;
+        }));
+    }, []);
+    const deleteCard = useCallback((columnId, cardId) => {
+        setColumns((prev) => prev.map((col) => {
+            if (col.id === columnId) {
+                return { ...col, cards: col.cards.filter((c) => c.id !== cardId) };
+            }
+            return col;
+        }));
+    }, []);
+    const editCard = useCallback((columnId, cardId, title) => {
+        setColumns((prev) => prev.map((col) => {
+            if (col.id === columnId) {
+                return {
+                    ...col,
+                    cards: col.cards.map((c) => c.id === cardId ? { ...c, title } : c),
+                };
+            }
+            return col;
+        }));
+    }, []);
+    const moveCard = useCallback((fromColumnId, toColumnId, cardId, targetIndex) => {
+        setColumns((prev) => {
+            const copy = prev.map((c) => ({ ...c, cards: [...c.cards] }));
+            const from = copy.find((c) => c.id === fromColumnId);
+            const to = copy.find((c) => c.id === toColumnId);
+            if (!from || !to)
+                return prev;
+            const idx = from.cards.findIndex((c) => c.id === cardId);
+            if (idx === -1)
+                return prev;
+            const removed = from.cards.splice(idx, 1);
+            const card = removed[0] ?? null;
+            if (!card)
+                return prev;
+            let adjustedIndex = targetIndex;
+            if (fromColumnId === toColumnId && idx < targetIndex) {
+                adjustedIndex = Math.max(0, targetIndex - 1);
+            }
+            to.cards.splice(Math.max(0, adjustedIndex), 0, card);
+            return copy;
+        });
+    }, []);
+    return {
+        columns,
+        addCard,
+        deleteCard,
+        editCard,
+        moveCard,
+        setColumns,
+    };
+}
+//# sourceMappingURL=useKanban.js.map
