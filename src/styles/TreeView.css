@@ -1,0 +1,259 @@
+.tree-view {
+  padding: 30px 20px;
+  background: #f8f9fa;
+  min-height: 100vh;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, sans-serif;
+}
+
+.tree-view-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tree-node-wrapper {
+  margin: 0;
+  position: relative;
+}
+
+.tree-node {
+  display: flex;
+  align-items: flex-start;
+  padding: 16px 0;
+  border-radius: 0;
+  transition: all 0.2s ease;
+  cursor: grab;
+  position: relative;
+}
+
+.tree-node:hover {
+  background-color: transparent;
+}
+
+.tree-node.drag-over {
+  background-color: #dbeafe;
+}
+
+.tree-node.drag-over::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  right: -20px;
+  background: #3b82f6;
+}
+
+.tree-node.drag-above::before {
+  top: 0;
+  height: 2px;
+}
+
+.tree-node.drag-below::before {
+  bottom: 0;
+  height: 2px;
+}
+
+.tree-node.drag-inside::before {
+  display: none;
+}
+
+.tree-node.drag-over.drag-inside {
+  background-color: #bfdbfe;
+}
+
+.tree-node-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  width: 100%;
+}
+
+.expand-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  font-size: 14px;
+  color: #64748b;
+  transition: transform 0.2s;
+  min-width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.expand-btn:hover {
+  color: #2d3748;
+}
+
+.expand-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.expand-placeholder {
+  min-width: 20px;
+  flex-shrink: 0;
+}
+
+.node-icon {
+  font-size: 0;
+  margin-right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  font-size: 16px;
+}
+
+.node-name {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: text;
+  user-select: none;
+  transition: background-color 0.2s;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2d3748;
+  background: #f8fafb;
+  border: 1px solid #e2e8f0;
+}
+
+.node-name:hover {
+  background-color: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+.node-edit-input {
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  background: white;
+  color: #1f2937;
+  min-width: 160px;
+}
+.loading {
+  font-size: 12px;
+  color: #ff9800;
+  font-style: italic;
+  margin: 0 8px;
+}
+
+.node-actions {
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  margin-left: 8px;
+}
+
+.tree-node:hover .node-actions {
+  opacity: 1;
+}
+
+.action-btn {
+  background: none;
+  border: 1px solid #e2e8f0;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  color: #718096;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn:hover {
+  background-color: #edf2f7;
+  border-color: #cbd5e0;
+  color: #2d3748;
+}
+
+.add-btn:hover {
+  background-color: #dcfce7;
+  border-color: #86efac;
+  color: #166534;
+}
+
+.edit-btn:hover {
+  background-color: #dbeafe;
+  border-color: #93c5fd;
+  color: #1e40af;
+}
+
+.delete-btn:hover {
+  background-color: #fee2e2;
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+
+.tree-node-children {
+  margin: 0;
+  margin-left: 20px;
+  padding-left: 0;
+  border-left: 2px dashed #cbd5e0;
+  padding-left: 10px;
+}
+
+.tree-node-wrapper:nth-child(1) .node-icon {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.tree-node-wrapper:nth-child(n + 2) .node-icon {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+@media (max-width: 768px) {
+  .tree-view {
+    padding: 15px 10px;
+  }
+
+  .tree-view-container {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .tree-node-content {
+    gap: 8px;
+  }
+
+  .node-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .node-name {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  .node-actions {
+    opacity: 1;
+    gap: 4px;
+    margin-left: 4px;
+  }
+
+  .action-btn {
+    padding: 4px 6px;
+    font-size: 12px;
+  }
+
+  .tree-node-children {
+    margin-left: 16px;
+  }
+}
