@@ -1,42 +1,45 @@
 export const mockTreeData = [
     {
         id: "1",
-        name: "Project Root",
+        name: "Animal Kingdom",
         isExpanded: true,
         children: [
             {
                 id: "1-1",
-                name: "src",
+                name: "Mammals",
                 isExpanded: true,
                 children: [
-                    { id: "1-1-1", name: "components", children: [] },
-                    { id: "1-1-2", name: "utils", children: [] },
-                    { id: "1-1-3", name: "types.ts", children: [] },
+                    { id: "1-1-1", name: "Lion", children: [] },
+                    { id: "1-1-2", name: "Elephant", children: [] },
+                    { id: "1-1-3", name: "Whale", children: [] },
                 ],
             },
             {
                 id: "1-2",
-                name: "public",
+                name: "Birds",
                 isExpanded: false,
                 children: [
-                    { id: "1-2-1", name: "index.html", children: [] },
-                    { id: "1-2-2", name: "favicon.ico", children: [] },
+                    { id: "1-2-1", name: "Eagle", children: [] },
+                    { id: "1-2-2", name: "Parrot", children: [] },
                 ],
             },
             {
                 id: "1-3",
-                name: "package.json",
-                children: [],
+                name: "Reptiles",
+                children: [
+                    { id: "1-3-1", name: "Snake", children: [] },
+                    { id: "1-3-2", name: "Crocodile", children: [] },
+                ],
             },
         ],
     },
     {
         id: "2",
-        name: "Documentation",
+        name: "Habitats",
         isExpanded: false,
         children: [
-            { id: "2-1", name: "README.md", children: [] },
-            { id: "2-2", name: "CONTRIBUTING.md", children: [] },
+            { id: "2-1", name: "Forest", children: [] },
+            { id: "2-2", name: "Ocean", children: [] },
         ],
     },
 ];
@@ -72,12 +75,24 @@ export const simulateLazyLoad = (parentId) => {
         setTimeout(() => {
             const mockChildren = {
                 "1-1": [
-                    { id: "1-1-1", name: "TreeView.tsx", children: [] },
-                    { id: "1-1-2", name: "TreeNode.tsx", children: [] },
+                    { id: "1-1-4", name: "Cub", children: [] },
+                    { id: "1-1-5", name: "Calf", children: [] },
                 ],
                 "1-2": [
-                    { id: "1-2-1", name: "assets", children: [] },
-                    { id: "1-2-2", name: "images", children: [] },
+                    { id: "1-2-3", name: "Sparrow", children: [] },
+                    { id: "1-2-4", name: "Penguin", children: [] },
+                ],
+                "1-3": [
+                    { id: "1-3-3", name: "Lizard", children: [] },
+                    { id: "1-3-4", name: "Turtle", children: [] },
+                ],
+                "2-1": [
+                    { id: "2-1-1", name: "Oak Forest", children: [] },
+                    { id: "2-1-2", name: "Rainforest", children: [] },
+                ],
+                "2-2": [
+                    { id: "2-2-1", name: "Coral Reef", children: [] },
+                    { id: "2-2-2", name: "Deep Sea", children: [] },
                 ],
             };
             resolve(mockChildren[parentId] || []);
